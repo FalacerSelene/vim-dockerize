@@ -3,7 +3,7 @@ Vim-Dockerize
 
 [![Travis Build Status](https://travis-ci.org/FalacerSelene/vim-dockerize.svg?branch=master)](https://travis-ci.org/FalacerSelene/vim-dockerize)
 
-Version: *0.0.0*
+Version: *0.1.0*
 
 1. [Introduction](#introduction)
 2. [Licence](#licence)
