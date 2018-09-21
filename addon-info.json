@@ -1,0 +1,12 @@
+{
+  "name": "vim-dockerize",
+  "version": "0.0.0",
+  "author": "@FalacerSelene <git@falacer-selene.net>",
+  "maintainer": "@FalacerSelene <git@falacer-selene.net>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/FalacerSelene/vim-dockerize.git"
+  },
+  "dependencies": {},
+  "description": "Easy docker mounting for projects"
+}
