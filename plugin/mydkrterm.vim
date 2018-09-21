@@ -20,4 +20,4 @@ lockvar g:vim_dockerize_version
 "|===========================================================================|
 
 command -nargs=? -bang Dockerize
-	\ if empty(<q-args>) | call mydkrterm#DockerTerminalSelect('') | else | call mydkrterm#DockerTerminal(<q-args>, 1) | endif
+	\ if empty(<q-args>) | call mydkrterm#DockerTerminalSelect('!') | else | call mydkrterm#DockerTerminal(<q-args>, 1) | endif
