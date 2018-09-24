@@ -35,48 +35,12 @@ function! vdockerize#ImageSelectionDialogue() abort
 		echoerr 'Invalid selection:' l:num
 		return
 	endif
-	let l:selected = l:images[l:num]
-	return l:selected
-endfunction
 
-function! s:Builder()
-	let l:self = {'args': [], 'env': {}, 'volumes': {}}
-
-	function l:self.add_arg(arg)
-		call add(l:self.args, a:arg)
-	endfunction
-
-	function l:self.add_env(key, value)
-		let l:self.env[a:key] = a:value
-	endfunction
-
-	function l:self.add_vol(key, value)
-		let l:self.volumes[a:key] = a:value
-	endfunction
-
-	function l:self.build(image_name)
-		let l:ret = ['docker', 'run']
-		call extend(l:ret, l:self.args)
-
-		for [l:k, l:v] in items(l:self.env)
-			call add(l:ret, '--env')
-			call add(l:ret, printf('%s=%s', l:k, l:v))
-		endfor
-
-		for [l:k, l:v] in items(l:self.volumes)
-			call add(l:ret, '--volume')
-			call add(l:ret, printf('%s:%s', l:k, l:v))
-		endfor
-
-		call add(l:ret, a:image_name)
-		return join(l:ret)
-	endfunction
-
-	return l:self
+	return l:images[l:num]
 endfunction
 
 function! s:BuildDockerCommand(image_name)
-	let l:builder = <SID>Builder()
+	let l:builder = vdockerize#builder#New()
 
 	call <SID>SetCommon(l:builder)
 	call <SID>SetCwd(l:builder)
