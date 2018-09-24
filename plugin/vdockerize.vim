@@ -19,5 +19,13 @@ lockvar g:vim_dockerize_version
 "|                             USER INTERFACE                                |
 "|===========================================================================|
 
-command -nargs=? -bang Dockerize
-	\ if empty(<q-args>) | call mydkrterm#DockerTerminalSelect('!') | else | call mydkrterm#DockerTerminal(<q-args>, 1) | endif
+command -nargs=? -bang Dockerize call <SID>DockerizeCommand(<q-args>)
+
+"|===========================================================================|
+"|                            SCRIPT FUNCTIONS                               |
+"|===========================================================================|
+
+function s:DockerizeCommand(image)
+	let l:image = empty(a:image) ? vdockerize#ImageSeletionDialogue() : a:image
+	call vdockerize#DockerTerminal(l:image, 1)
+endfunction
