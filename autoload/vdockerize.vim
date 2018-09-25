@@ -106,12 +106,12 @@ endfunction
 "|                                                                           |
 "| PARAMS:                                                                   |
 "|   builder) The builder.                                                   |
+"|                                                                           |
+"| Returns the builder.                                                      |
 "|===========================================================================|
 function! s:SetCwd(builder)
 	let l:dir = getcwd()
-	call a:builder.add_arg('--workdir')
-	 \            .add_arg(l:dir)
-	 \            .add_vol(l:dir, l:dir)
+	return a:builder.add_arg('--workdir').add_arg(l:dir).add_vol(l:dir, l:dir)
 endfunction
 "|===========================================================================|
 "| }}}                                                                       |
@@ -124,12 +124,15 @@ endfunction
 "|                                                                           |
 "| PARAMS:                                                                   |
 "|   builder) The builder.                                                   |
+"|                                                                           |
+"| Returns the builder.                                                      |
 "|===========================================================================|
 function! s:SetCommon(builder)
 	call a:builder.add_arg('--interactive')
-	 \            .add_arg('--tty')
-	 \            .add_arg('--rm')
-	 \            .add_arg('--net=host')
+	call a:builder.add_arg('--tty')
+	call a:builder.add_arg('--rm')
+	call a:builder.add_arg('--net=host')
+	return a:builder
 endfunction
 "|===========================================================================|
 "| }}}                                                                       |
@@ -142,15 +145,17 @@ endfunction
 "|                                                                           |
 "| PARAMS:                                                                   |
 "|   builder) The builder.                                                   |
+"|                                                                           |
+"| Returns the builder.                                                      |
 "|===========================================================================|
 function! s:SetSsh(builder)
 	let l:sock = $SSH_AUTH_SOCK
 	if empty(l:sock)
 		return
 	endif
-	let l:sockdir = fnamemodify(l:sock, ':h')
-	call a:builder.add_env('SSH_AUTH_SOCK', l:sock)
-	 \            .add_vol(l:sockdir, l:sockdir)
+	let l:d = fnamemodify(l:sock, ':h')
+
+	return a:builder.add_env('SSH_AUTH_SOCK', l:sock).add_vol(l:d, l:d)
 endfunction
 "|===========================================================================|
 "| }}}                                                                       |
@@ -163,6 +168,8 @@ endfunction
 "|                                                                           |
 "| PARAMS:                                                                   |
 "|   builder) The builder.                                                   |
+"|                                                                           |
+"| Returns the builder.                                                      |
 "|===========================================================================|
 function! s:SetTmux(builder)
 	let l:tmuxenv = $TMUX
@@ -170,10 +177,15 @@ function! s:SetTmux(builder)
 		return
 	endif
 	let l:tmux = split(l:tmuxenv, ',')[0]
-	let l:tmuxdir = fnamemodify(l:tmux, ':h')
-	let l:tmuxfile = fnamemodify(l:tmux, ':t')
-	call a:builder.add_env('TMUX_SOCKET', printf('/run/tmux/%s', l:tmuxfile))
-	 \            .add_vol(l:tmuxdir, '/run/tmux')
+
+	let l:dir = fnamemodify(l:tmux, ':h')
+	let l:file = fnamemodify(l:tmux, ':t')
+
+	let l:mount = printf('/run/tmux/%s', l:file)
+
+	call a:builder.add_env('TMUX_SOCKET', l:mount)
+	call a:builder.add_vol(l:dir, '/run/tmux')
+	return a:builder
 endfunction
 "|===========================================================================|
 "| }}}                                                                       |
@@ -186,9 +198,11 @@ endfunction
 "|                                                                           |
 "| PARAMS:                                                                   |
 "|   builder) The builder.                                                   |
+"|                                                                           |
+"| Returns the builder.                                                      |
 "|===========================================================================|
 function! s:SetShell(builder)
-	call a:builder.add_env('SHELL', '/bin/sh')
+	return a:builder.add_env('SHELL', '/bin/sh')
 endfunction
 "|===========================================================================|
 "| }}}                                                                       |
@@ -201,17 +215,20 @@ endfunction
 "|                                                                           |
 "| PARAMS:                                                                   |
 "|   builder) The builder.                                                   |
+"|                                                                           |
+"| Returns the builder.                                                      |
 "|===========================================================================|
 function! s:SetUser(builder)
 	let l:user = systemlist('id -u')[0]
 	let l:group = systemlist('id -g')[0]
 	let l:home = expand('~')
 	call a:builder.add_arg('--user')
-	 \            .add_arg(printf('%s:%s', l:user, l:group))
-	 \            .add_env('USER', l:user)
-	 \            .add_vol('/etc/passwd', '/etc/passwd')
-	 \            .add_env('HOME', l:home)
-	 \            .add_vol(l:home, l:home)
+	call a:builder.add_arg(printf('%s:%s', l:user, l:group))
+	call a:builder.add_env('USER', l:user)
+	call a:builder.add_vol('/etc/passwd', '/etc/passwd')
+	call a:builder.add_env('HOME', l:home)
+	call a:builder.add_vol(l:home, l:home)
+	return a:builder
 endfunction
 "|===========================================================================|
 "| }}}                                                                       |
