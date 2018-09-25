@@ -42,17 +42,9 @@ function! vdockerize#ImageSelectionDialogue() abort
 	let l:choices = copy(l:images)
 	call map(l:choices, {i, ss -> i . ': ' . ss})
 	let l:choices = join(l:choices, "\n")
-
-	let l:default = ''
-	if has_key(g:, 'vdockerize')
-		let l:idx = index(l:choices, g:vdockerize)
-		if l:idx != -1
-			let l:default = string(l:idx)
-		endif
-	endif
-
-	let l:selection = input(l:choices . "\n? ", l:default)
+	let l:selection = input(l:choices . "\n? ", '')
 	let l:num = str2nr(l:selection)
+
 	if l:selection ==# ''
 		return ''
 	elseif match(l:selection, '^\v\s*\d+\s*$') == -1
