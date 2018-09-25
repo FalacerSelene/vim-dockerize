@@ -1,0 +1,5 @@
+augroup LOCAL
+	autocmd Filetype vim let b:CommentableBlockStyle = ['"|', '=', '|']
+	autocmd Filetype vim let b:CommentableSubWidth = 50
+	autocmd Filetype vim unlet! b:CommentableSubStyle
+augroup END
