@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 [unreleased]
 ------------
 
+### Changed
+- Made `vdockerize#ImageSelectionDialogue()` return the name of the selected
+  image rather than running it.
+
 [0.1.0] - 2018-09-21
 --------------------
 
