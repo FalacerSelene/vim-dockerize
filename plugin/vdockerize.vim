@@ -39,6 +39,15 @@ command -nargs=? -bang Dockerize call <SID>DockerizeCommand(<q-args>)
 "|===========================================================================|
 
 function s:DockerizeCommand(image)
-	let l:image = empty(a:image) ? vdockerize#ImageSelectionDialogue() : a:image
+	let l:image = a:image
+
+	if empty(l:image)
+		let l:image = get(g:, 'dockerize_default_image', '')
+	endif
+
+	if empty(l:image)
+		let l:image = vdockerize#ImageSelectionDialogue()
+	endif
+
 	call vdockerize#DockerTerminal(l:image, 1)
 endfunction

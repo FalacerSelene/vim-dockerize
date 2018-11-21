@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 [unreleased]
 ------------
 
+### Added
+- Added global parameter `g:dockerize_default_image`. If this is set, then the
+  0-arg `:Dockerize` command will use the named image instead of prompting the
+  user to select one.
+
 ### Changed
 - Made `vdockerize#ImageSelectionDialogue()` return the name of the selected
   image rather than running it.
