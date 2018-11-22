@@ -17,6 +17,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Made `vdockerize#ImageSelectionDialogue()` return the name of the selected
   image rather than running it.
+- Changed some load variable names:
+  - `g:loaded_vim_dockerize` -> `g:loaded_dockerize`
+  - `g:vim_dockerize_version` -> `g:dockerize_version`
 
 [0.1.0] - 2018-09-21
 --------------------
