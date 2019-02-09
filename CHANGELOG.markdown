@@ -21,6 +21,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   - `g:loaded_vim_dockerize` -> `g:loaded_dockerize`
   - `g:vim_dockerize_version` -> `g:dockerize_version`
 
+### Fixed
+- Now yells at you if you try to run without `docker`.
+
 [0.1.0] - 2018-09-21
 --------------------
 

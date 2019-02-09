@@ -21,7 +21,7 @@ if &compatible || exists('g:loaded_dockerize')
 elseif v:version < 800
 	echoerr 'Vim-Dockerize requires vim 8.0 or later!'
 elseif !(has('terminal') && has('lambda'))
-	echoerr 'Vim-Dockerize must be compiled with "terminal" and "lambda"'
+	echoerr 'Vim-Dockerize must be compiled with "terminal" and "lambda"!'
 endif
 
 let g:loaded_dockerize = 1
@@ -39,6 +39,9 @@ command -nargs=? -bang Dockerize call <SID>DockerizeCommand(<q-args>)
 "|===========================================================================|
 
 function s:DockerizeCommand(image)
+	if !vdockerize#HasDocker()
+		echoerr 'Vim-Dockerize requires "docker" to be installed!'
+	endif
 	let l:image = a:image
 
 	if empty(l:image)
