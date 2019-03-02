@@ -7,7 +7,7 @@
 "|       AUTHOR:  @FalacerSelene                                             |
 "|      CONTACT:  < git at falacer-selene dot net >                          |
 "|      LICENCE:  See LICENCE.md                                             |
-"|      VERSION:  0.1.0 <alpha>                                              |
+"|      VERSION:  0.2.0 <alpha>                                              |
 "|                                                                           |
 "|===========================================================================|
 
@@ -25,7 +25,7 @@ elseif !(has('terminal') && has('lambda'))
 endif
 
 let g:loaded_dockerize = 1
-let g:dockerize_version = '0.1.0'
+let g:dockerize_version = '0.2.0'
 lockvar g:dockerize_version
 
 "|===========================================================================|

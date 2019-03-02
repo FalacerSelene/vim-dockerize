@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 [unreleased]
 ------------
 
+[0.2.0] - 2019-03-02
+--------------------
+
 ### Added
 - Added global parameter `g:dockerize_default_image`. If this is set, then the
   0-arg `:Dockerize` command will use the named image instead of prompting the
@@ -31,4 +34,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Initial project creation
 
 [unreleased]: https://www.github.com/FalacerSelene/vim-dockerize
+[0.2.0]: https://www.github.com/FalacerSelene/vim-dockerize/tree/0.2.0
 [0.1.0]: https://www.github.com/FalacerSelene/vim-dockerize/tree/0.1.0
