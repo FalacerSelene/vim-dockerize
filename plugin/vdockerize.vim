@@ -52,5 +52,7 @@ function s:DockerizeCommand(image)
 		let l:image = vdockerize#ImageSelectionDialogue()
 	endif
 
-	call vdockerize#DockerTerminal(l:image, 1)
+	if !empty(l:image)
+		call vdockerize#DockerTerminal(l:image, 1)
+	endif
 endfunction
