@@ -9,6 +9,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 [unreleased]
 ------------
 
+### Added
+
+- Added `DockerizeNew` command, which opens the dockerized terminal in a new
+  window rather than the current one.
+
+- Added `dockerize_default_expr` variable, which will be evaluated to get the
+  default image if the `dockerize_default_image` is not present.
+
+### Changed
+
+- Now attempts to look up variables in the `g:`, `t:`, `w:` and `b:` scopes in
+  that order, rather than only in the `g:` scope.
+
 ### Fixed
 
 - Now does not complain when cancelling image selection dialogue with ESC

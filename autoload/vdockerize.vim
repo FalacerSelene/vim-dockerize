@@ -70,19 +70,27 @@ endfunction
 "|===========================================================================|
 
 "|===========================================================================|
-"| vdockerize#HasDocker() {{{                                                |
+"| vdockerize#IsReady() {{{                                                  |
 "|                                                                           |
-"| Check if docker is installed.                                             |
+"| Check if this plugin is ready to provide service.                         |
 "|                                                                           |
 "| PARAMS: None                                                              |
 "|                                                                           |
-"| Returns 1 if docker installed, else 0.                                    |
+"| Returns 1 if ready, else 0. If unready will also :echoerr with a reason.  |
 "|===========================================================================|
-function! vdockerize#HasDocker() abort
-	if !exists('s:hasdocker')
-		let s:hasdocker = executable('docker')
+function! vdockerize#IsReady() abort
+	if v:version < 800
+		echoerr 'Vim-Dockerize requires vim 8.0 or later!'
+		return 0
+	elseif !(has('terminal') && has('lambda'))
+		echoerr 'Vim-Dockerize must be compiled with "terminal" and "lambda"!'
+		return 0
+	elseif !executable('docker')
+		echoerr 'Vim-Dockerize requires that docker is installed!'
+		return 0
 	endif
-	return s:hasdocker
+
+	return 1
 endfunction
 "|===========================================================================|
 "| }}}                                                                       |
