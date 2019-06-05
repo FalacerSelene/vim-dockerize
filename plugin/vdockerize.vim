@@ -57,7 +57,7 @@ function s:Dockerize(image, bang, curwin)
 		" Otherwise, try to use the expr
 		if empty(l:image)
 			let l:expr = <SID>GetVar('dockerize_default_expr')
-			if type(l:expr) = v:t_func
+			if type(l:expr) == v:t_func
 				let l:image = call(l:expr, [])
 			else
 				if !empty(l:expr)
