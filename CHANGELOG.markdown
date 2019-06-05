@@ -25,6 +25,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Now attempts to look up variables in the `g:`, `t:`, `w:` and `b:` scopes in
   that order, rather than only in the `g:` scope.
 
+- Changed `vdockerize#HasDocker()` to `vdockerize#IsReady()`. This function
+  now encapsulates a more general 'is this plugin ready?' check rather than
+  just looking up if docker exists.
+
+
 ### Fixed
 
 - Now does not complain when cancelling image selection dialogue with ESC
