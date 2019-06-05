@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 [unreleased]
 ------------
 
+[0.2.1] - 2019-06-05
+--------------------
+
 ### Added
 
 - Added `DockerizeNew` command, which opens the dockerized terminal in a new
@@ -55,5 +58,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 Initial project creation
 
 [unreleased]: https://www.github.com/FalacerSelene/vim-dockerize
+[0.2.1]: https://www.github.com/FalacerSelene/vim-dockerize/tree/0.2.1
 [0.2.0]: https://www.github.com/FalacerSelene/vim-dockerize/tree/0.2.0
 [0.1.0]: https://www.github.com/FalacerSelene/vim-dockerize/tree/0.1.0

@@ -7,7 +7,7 @@
 "|       AUTHOR:  @FalacerSelene                                             |
 "|      CONTACT:  < git at falacer-selene dot net >                          |
 "|      LICENCE:  See LICENCE.md                                             |
-"|      VERSION:  0.2.0 <alpha>                                              |
+"|      VERSION:  0.2.1                                                      |
 "|                                                                           |
 "|===========================================================================|
 
@@ -21,7 +21,7 @@ if &compatible || exists('g:loaded_dockerize')
 endif
 
 let g:loaded_dockerize = 1
-let g:dockerize_version = '0.2.0'
+let g:dockerize_version = '0.2.1'
 lockvar g:dockerize_version
 
 "|===========================================================================|
