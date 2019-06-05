@@ -78,8 +78,8 @@ endfunction
 
 function s:GetVar(varname)
 	for l:scope in [g:, t:, w:, b:]
-		if has_key(l:scope, a:var_name)
-			return get(l:scope, a:var_name)
+		if has_key(l:scope, a:varname)
+			return get(l:scope, a:varname)
 		endif
 	endfor
 	return ''
