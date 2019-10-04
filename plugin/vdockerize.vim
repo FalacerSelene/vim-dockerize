@@ -56,13 +56,11 @@ function s:Dockerize(image, bang, curwin)
 
 		" Otherwise, try to use the expr
 		if empty(l:image)
-			let l:expr = <SID>GetVar('DockerizeDefaultExpr')
-			if type(l:expr) == v:t_func
-				" Note: thas can't happen if you're using a global variable,
-				" because global non-capitals can't contain functions.
-				let l:image = call(l:expr, [])
-			elseif !empty(l:expr)
-				let l:image = eval(l:expr)
+			let l:Expr = <SID>GetVar('DockerizeDefaultExpr')
+			if type(l:Expr) == v:t_func
+				let l:image = call(l:Expr, [])
+			elseif !empty(l:Expr)
+				let l:image = eval(l:Expr)
 			endif
 		endif
 	endif
