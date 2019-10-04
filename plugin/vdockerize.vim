@@ -21,8 +21,8 @@ if &compatible || exists('g:loaded_dockerize')
 endif
 
 let g:loaded_dockerize = 1
-let g:dockerize_version = '0.2.1'
-lockvar g:dockerize_version
+let g:DockerizeVersion = '0.2.1'
+lockvar g:DockerizeVersion
 
 "|===========================================================================|
 "|                             USER INTERFACE                                |
@@ -51,12 +51,12 @@ function s:Dockerize(image, bang, curwin)
 
 		" If the vim var is set, then use that.
 		if empty(l:image)
-			let l:image = <SID>GetVar('dockerize_default_image')
+			let l:image = <SID>GetVar('DockerizeDefaultImage')
 		endif
 
 		" Otherwise, try to use the expr
 		if empty(l:image)
-			let l:expr = <SID>GetVar('dockerize_default_expr')
+			let l:expr = <SID>GetVar('DockerizeDefaultExpr')
 			if type(l:expr) == v:t_func
 				" Note: thas can't happen if you're using a global variable,
 				" because global non-capitals can't contain functions.

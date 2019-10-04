@@ -9,6 +9,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 [unreleased]
 ------------
 
+### Changed
+
+- Switched all variables prefixed with `dockerize_` to be CamelCase. This
+  means:
+
+  - `dockerize_default_expr` -> `DockerizeDefaultExpr`
+  - `dockerize_default_image` -> `DockerizeDefaultImage`
+  - `dockerize_version` -> `DockerizeVersion`
+
 [0.2.1] - 2019-06-05
 --------------------
 
@@ -28,7 +37,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Changed `vdockerize#HasDocker()` to `vdockerize#IsReady()`. This function
   now encapsulates a more general 'is this plugin ready?' check rather than
   just looking up if docker exists.
-
 
 ### Fixed
 
