@@ -97,6 +97,29 @@ endfunction
 "|===========================================================================|
 
 "|===========================================================================|
+"| vdockerize#GetVar(varname) {{{                                            |
+"|                                                                           |
+"| Get a variable from the most local scope that defines it.                 |
+"|                                                                           |
+"| PARAMS:                                                                   |
+"|   varname) The name of the variable.                                      |
+"|   default) What to return if it's not defined.                            |
+"|                                                                           |
+"| Returns the value, or empty string if not defined.                        |
+"|===========================================================================|
+function vdockerize#GetVar(varname, default)
+	for l:scope in [b:, w:, t:, g:]
+		if has_key(l:scope, a:varname)
+			return get(l:scope, a:varname)
+		endif
+	endfor
+	return a:default
+endfunction
+"|===========================================================================|
+"| }}}                                                                       |
+"|===========================================================================|
+
+"|===========================================================================|
 "|                            SCRIPT FUNCTIONS                               |
 "|===========================================================================|
 
@@ -117,7 +140,9 @@ function! s:BuildDockerCommand(image_name)
 	call <SID>SetCwd(l:builder)
 	call <SID>SetSsh(l:builder)
 	call <SID>SetTmux(l:builder)
-	"call <SID>SetUser(l:builder)
+	if !vdockerize#GetVar('DockerizeUseRoot', 1)
+		call <SID>SetUser(l:builder)
+	endif
 	call <SID>SetShell(l:builder)
 
 	return l:builder.build(a:image_name)
@@ -260,3 +285,4 @@ endfunction
 "|===========================================================================|
 "| }}}                                                                       |
 "|===========================================================================|
+

@@ -51,12 +51,12 @@ function s:Dockerize(image, bang, curwin)
 
 		" If the vim var is set, then use that.
 		if empty(l:image)
-			let l:image = <SID>GetVar('DockerizeDefaultImage')
+			let l:image = vdockerize#GetVar('DockerizeDefaultImage', '')
 		endif
 
 		" Otherwise, try to use the expr
 		if empty(l:image)
-			let l:Expr = <SID>GetVar('DockerizeDefaultExpr')
+			let l:Expr = vdockerize#GetVar('DockerizeDefaultExpr', '')
 			if type(l:Expr) == v:t_func
 				let l:image = call(l:Expr, [])
 			elseif !empty(l:Expr)
@@ -72,13 +72,4 @@ function s:Dockerize(image, bang, curwin)
 	if !empty(l:image)
 		call vdockerize#DockerTerminal(l:image, a:curwin)
 	endif
-endfunction
-
-function s:GetVar(varname)
-	for l:scope in [g:, t:, w:, b:]
-		if has_key(l:scope, a:varname)
-			return get(l:scope, a:varname)
-		endif
-	endfor
-	return ''
 endfunction

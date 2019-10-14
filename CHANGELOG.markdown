@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 [unreleased]
 ------------
 
+### Added
+
+- Added `DockerizeUseRoot` variable, which defaults to 1. If set to 0, then
+  dockerize will launch as the current user instead of root.
+
 ### Changed
 
 - Switched all variables prefixed with `dockerize_` to be CamelCase. This
