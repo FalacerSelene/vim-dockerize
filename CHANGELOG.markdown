@@ -14,6 +14,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Added `DockerizeUseRoot` variable, which defaults to 1. If set to 0, then
   dockerize will launch as the current user instead of root.
 
+- Added `vdockerize#compat` module, for providing compatibility loaders with
+  other similar systems.
+
+- Provided `vdockerize#compat#Floki` for compat with
+  [floki](https://github.com/Metaswitch/floki).
+
 ### Changed
 
 - Switched all variables prefixed with `dockerize_` to be CamelCase. This
