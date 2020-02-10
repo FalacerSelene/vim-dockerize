@@ -22,7 +22,6 @@ endif
 
 let g:loaded_dockerize = 1
 let g:DockerizeVersion = '0.2.1'
-lockvar g:DockerizeVersion
 
 "|===========================================================================|
 "|                             USER INTERFACE                                |
